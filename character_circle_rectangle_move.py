@@ -6,7 +6,14 @@ open_canvas()
 grass = load_image('grass.png')
 character = load_image('character.png')
 
-def run_rectangle():
+
+def render_frame(x, y):
+    clear_canvas_now()
+    grass.draw_now(400, 30)
+    character.draw_now(x, y)
+    delay(0.01)
+
+def run_circle():
     print('CIRCLE')
 
     # 그림 그리기
@@ -15,20 +22,20 @@ def run_rectangle():
     for deg in range(0, 360, 1):
         x = r * cos(radians(deg)) + cx
         y = r * sin(radians(deg)) + cy
-        clear_canvas_now()
-        grass.draw_now(400, 30)
-        character.draw_now(x, y)
-        delay(0.01)
+        render_frame(x, y)
 
-    pass
+def run_rectangle():
 
-def run_circle():
-    print('RECTANGLE')
-    pass
+    for x in range(50, 750 + 1, 10):
+        render_frame(x, 90)
+
+    for x in range(750, 50, -10):
+        render_frame(x, 90)
+
 
 while True:
-    run_rectangle()
     run_circle()
+    run_rectangle()
     break
 
 close_canvas()
