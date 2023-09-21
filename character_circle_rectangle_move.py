@@ -1,4 +1,5 @@
 from pico2d import *
+from math import *
 
 open_canvas()
 
@@ -9,10 +10,15 @@ def run_rectangle():
     print('CIRCLE')
 
     # 그림 그리기
-    clear_canvas_now()
-    grass.draw_now(400, 30)
-    character.draw_now(400, 90)
-    delay(1)
+    cx, cy, r = 400, 300, 200
+
+    for deg in range(0, 360, 1):
+        x = r * cos(radians(deg)) + cx
+        y = r * sin(radians(deg)) + cy
+        clear_canvas_now()
+        grass.draw_now(400, 30)
+        character.draw_now(x, y)
+        delay(0.01)
 
     pass
 
